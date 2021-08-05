@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "projects": {
+    "baseball": {
+      "projectType": "application",
+      "root": "apps/baseball",
+      "sourceRoot": "apps/baseball/src",
+      "prefix": "sq",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/baseball",
+            "index": "apps/baseball/src/index.html",
+            "main": "apps/baseball/src/main.ts",
+            "polyfills": "apps/baseball/src/polyfills.ts",
+            "tsConfig": "apps/baseball/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/baseball/src/favicon.ico",
+              "apps/baseball/src/assets"
+            ],
+            "styles": ["apps/baseball/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/baseball/src/environments/environment.ts",
+                  "with": "apps/baseball/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "baseball:build:production"
+            },
+            "development": {
+              "browserTarget": "baseball:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "baseball:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/baseball/src/**/*.ts",
+              "apps/baseball/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/baseball"],
+          "options": {
+            "jestConfig": "apps/baseball/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "baseball-e2e": {
+      "root": "apps/baseball-e2e",
+      "sourceRoot": "apps/baseball-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/baseball-e2e/cypress.json",
+            "tsConfig": "apps/baseball-e2e/tsconfig.e2e.json",
+            "devServerTarget": "baseball:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "baseball:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/baseball-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "baseball"
+}
