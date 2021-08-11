@@ -1,0 +1,25 @@
+<div class="auto-search-container">
+  <input
+    [formControl]="searchControl"
+    (focus)="focused = true"
+    (blur)="focused = false"
+  />
+  <div *ngIf="suggestions.length > 0 && focused" class="suggestions-box">
+    <div
+      *ngFor="let s of suggestions"
+      (mousedown)="onClickSuggestion($event, s)"
+    >
+      {{ s.name }}
+    </div>
+  </div>
+  <div
+    *ngIf="
+      suggestions.length === 0 &&
+      focused &&
+      (searchControl.touched || searchControl.dirty)
+    "
+    class="suggestions-box"
+  >
+    <div>No results.</div>
+  </div>
+</div>

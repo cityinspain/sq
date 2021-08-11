@@ -33,6 +33,15 @@
     "baseball-e2e": {
       "tags": [],
       "implicitDependencies": ["baseball"]
+    },
+    "profile": {
+      "tags": []
+    },
+    "ui": {
+      "tags": []
+    },
+    "util": {
+      "tags": []
     }
   }
 }

@@ -1,0 +1,12 @@
+<!-- <p>{{ player?.name }}</p> -->
+<div class="root">
+  <ng-container *ngIf="player">
+    <h2>{{ player?.nameFirst }} {{ player?.nameLast }}</h2>
+    <p>Bats: {{ player.bats }}</p>
+    <p>Throws: {{ player.throws }}</p>
+    <p>{{ formatBirthInfo() }}</p>
+
+    <p *ngIf="player.height">Height: {{ player.height | height }}</p>
+    <p *ngIf="player.weight">Weight: {{ player.weight }}lb</p>
+  </ng-container>
+</div>

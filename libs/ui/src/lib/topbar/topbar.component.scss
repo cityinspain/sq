@@ -1,0 +1,19 @@
+.topbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    background: #ccc;
+    padding: 5px;
+
+    p {
+        font-size: 24px;
+        font-family: monospace;
+    }
+
+    input {
+        font-size: 24px;
+        padding: 5px;
+    }
+}
