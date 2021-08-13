@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlayerSearchService } from '@sq/util';
-import { BaseballPlayer } from 'libs/util/src/lib/player-search/test-players';
 import * as dayjs from 'dayjs';
 import * as LocalizedFormat from 'dayjs/plugin/localizedFormat';
 dayjs.extend(LocalizedFormat);
@@ -13,7 +12,7 @@ dayjs.extend(LocalizedFormat);
 })
 export class PlayerComponent implements OnInit {
   playerId: string | null;
-  player: BaseballPlayer | null = null;
+  player: any;
 
   constructor(
     activatedRoute: ActivatedRoute,
@@ -22,7 +21,9 @@ export class PlayerComponent implements OnInit {
     this.playerId = activatedRoute.snapshot.paramMap.get('id');
     if (this.playerId) {
       const match = this.playerSearchService.getPlayerById(this.playerId);
-      this.player = match;
+      match.subscribe((res) => {
+        this.player = res;
+      });
     }
   }
 

@@ -6,6 +6,7 @@ import { UiModule } from '@sq/ui';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HeightPipe } from '@sq/util';
+import { HttpClientModule } from '@angular/common/http';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'home', component: HomeComponent },
@@ -16,7 +17,12 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [AppComponent, HomeComponent],
-  imports: [BrowserModule, UiModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    UiModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

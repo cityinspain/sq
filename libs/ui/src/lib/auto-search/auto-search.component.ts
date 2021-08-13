@@ -23,8 +23,20 @@ export class AutoSearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.searchControl.valueChanges.pipe(debounceTime(200)).subscribe((res) => {
-      this.suggestions = this.searchService.getSuggestions(res);
+    this.searchControl.valueChanges.pipe(debounceTime(500)).subscribe((res) => {
+      this.searchService
+        .getSuggestions(res)
+        .subscribe(
+          (
+            res: { playerID: string; nameFirst: string; nameLast: string }[]
+          ) => {
+            console.log(res);
+            this.suggestions = res.map((e) => ({
+              id: e.playerID,
+              name: [e.nameFirst, e.nameLast].join(' '),
+            }));
+          }
+        );
     });
   }
 
