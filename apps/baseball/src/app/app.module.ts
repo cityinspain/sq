@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HeightPipe } from '@sq/util';
 import { HttpClientModule } from '@angular/common/http';
+import { GraphQLModule } from './graphql.module';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'home', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
     UiModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    GraphQLModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

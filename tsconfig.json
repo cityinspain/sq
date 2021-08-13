@@ -10,16 +10,29 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom",
+      "esnext.asynciterable"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@sq/data-access": ["libs/data-access/src/index.ts"],
-      "@sq/profile": ["libs/profile/src/index.ts"],
-      "@sq/ui": ["libs/ui/src/index.ts"],
-      "@sq/util": ["libs/util/src/index.ts"]
-    }
+      "@sq/profile": [
+        "libs/profile/src/index.ts"
+      ],
+      "@sq/ui": [
+        "libs/ui/src/index.ts"
+      ],
+      "@sq/util": [
+        "libs/util/src/index.ts"
+      ]
+    },
+    "allowSyntheticDefaultImports": true
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

@@ -1,0 +1,81 @@
+query personByPlayerId($playerId: String!) {
+  lahmanPersonByPlayerId(playerId: $playerId) {
+    nodeId
+    nameFirst
+    nameLast
+    bats
+    weight
+    height
+    throws
+    birthDate
+    birthCity
+    birthState
+    birthCountry
+    lahmanBattingsByPlayerId {
+      edges {
+        node {
+          year
+          teamId
+          lgId
+          g
+          pa
+          ab
+          r
+          h
+          double
+          triple
+          hr
+          rbi
+          sb
+          cs
+          bb
+          so
+          ba
+          obp
+          slg
+          ops
+          gidp
+          hbp
+          sh
+          sf
+          ibb
+        }
+      }
+    }
+    lahmanPitchingsByPlayerId {
+      edges {
+        node {
+          year
+          teamId
+          lgId
+          w
+          l
+          era
+          g
+          gs
+          gf
+          cg
+          sho
+          sv
+          ipOuts
+          h
+          r
+          er
+          hr
+          bb
+          ibb
+          so
+          hbp
+          bk
+          wp
+          whip
+          h9
+          hr9
+          bb9
+          k9
+          sow
+        }
+      }
+    }
+  }
+}

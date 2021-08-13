@@ -6,7 +6,91 @@
     <p>Throws: {{ player.throws }}</p>
     <p>{{ formatBirthInfo() }}</p>
 
-    <p *ngIf="player.height">Height: {{ player.height | height }}</p>
-    <p *ngIf="player.weight">Weight: {{ player.weight }}lb</p>
+    <!-- <p *ngIf="player.height">Height: {{ player.height | height }}</p>
+    <p *ngIf="player.weight">Weight: {{ player.weight }}lb</p> -->
+
+    <table class="stat-table">
+      <tr>
+        <th>Year</th>
+        <th>Team</th>
+        <th>League</th>
+
+        <th>G</th>
+        <th>PA</th>
+        <th>AB</th>
+        <th>R</th>
+        <th>H</th>
+        <th>2B</th>
+        <th>3B</th>
+        <th>HR</th>
+        <th>RBI</th>
+        <th>SB</th>
+        <th>CS</th>
+        <th>BB</th>
+        <th>SO</th>
+        <th>BA</th>
+        <th>OBP</th>
+        <th>SLG</th>
+        <th>OPS</th>
+        <th>GIDP</th>
+        <th>HBP</th>
+        <th>SF</th>
+        <th>IBB</th>
+      </tr>
+      <tr *ngFor="let batting of battingTableData">
+        <ng-container *ngIf="batting">
+          <td>{{ batting.year }}</td>
+          <td>{{ batting.teamId }}</td>
+          <td>{{ batting.lgId }}</td>
+          <td>{{ batting.g }}</td>
+          <td>{{ batting.pa }}</td>
+          <td>{{ batting.ab }}</td>
+          <td>{{ batting.r }}</td>
+          <td>{{ batting.h }}</td>
+          <td>{{ batting.double }}</td>
+          <td>{{ batting.triple }}</td>
+          <td>{{ batting.hr }}</td>
+          <td>{{ batting.rbi }}</td>
+          <td>{{ batting.sb }}</td>
+          <td>{{ batting.cs }}</td>
+          <td>{{ batting.bb }}</td>
+          <td>{{ batting.so }}</td>
+          <td>{{ batting.ba | stat: 'avg' }}</td>
+          <td>{{ batting.obp | stat: 'avg' }}</td>
+          <td>{{ batting.slg | stat: 'avg' }}</td>
+          <td>{{ batting.ops | stat: 'avg' }}</td>
+          <td>{{ batting.gidp }}</td>
+          <td>{{ batting.hbp }}</td>
+          <td>{{ batting.sf }}</td>
+          <td>{{ batting.ibb }}</td>
+        </ng-container>
+      </tr>
+      <tr *ngIf="battingAggregate">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{ battingAggregate.g }}</td>
+        <td>{{ battingAggregate.pa }}</td>
+        <td>{{ battingAggregate.ab }}</td>
+        <td>{{ battingAggregate.r }}</td>
+        <td>{{ battingAggregate.h }}</td>
+        <td>{{ battingAggregate.double }}</td>
+        <td>{{ battingAggregate.triple }}</td>
+        <td>{{ battingAggregate.hr }}</td>
+        <td>{{ battingAggregate.rbi }}</td>
+        <td>{{ battingAggregate.sb }}</td>
+        <td>{{ battingAggregate.cs }}</td>
+        <td>{{ battingAggregate.bb }}</td>
+        <td>{{ battingAggregate.so }}</td>
+        <td>{{ battingAggregate.ba | stat: 'avg' }}</td>
+        <td>{{ battingAggregate.obp | stat: 'avg' }}</td>
+        <td>{{ battingAggregate.slg | stat: 'avg' }}</td>
+        <td>{{ battingAggregate.ops | stat: 'avg' }}</td>
+        <td>{{ battingAggregate.gidp }}</td>
+        <td>{{ battingAggregate.hbp }}</td>
+        <td>{{ battingAggregate.sf }}</td>
+        <td>{{ battingAggregate.ibb }}</td>
+      </tr>
+    </table>
   </ng-container>
 </div>

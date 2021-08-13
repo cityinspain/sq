@@ -2,11 +2,20 @@ import { Injectable } from '@angular/core';
 import { PLAYERS } from './test-players';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import {
+  LahmanPerson,
+  PersonByPlayerIdGQL,
+  PersonByPlayerIdQuery,
+} from '@sq/data-access';
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerSearchService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private playerGQL: PersonByPlayerIdGQL
+  ) {}
 
   getSuggestions(
     prefix: string
@@ -27,7 +36,11 @@ export class PlayerSearchService {
     >;
   }
 
-  getPlayerById(id: string) {
-    return this.http.get('http://localhost:3000/player/' + id);
+  getPlayerById(
+    id: string
+  ): Observable<PersonByPlayerIdQuery['lahmanPersonByPlayerId']> {
+    return this.playerGQL
+      .fetch({ playerId: id })
+      .pipe(map((res) => res.data.lahmanPersonByPlayerId));
   }
 }
